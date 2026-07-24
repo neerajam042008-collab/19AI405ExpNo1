@@ -1,6 +1,6 @@
 <h1>ExpNo 1 :Developing AI Agent with PEAS Description</h1>
-<h3>Name: Saravanan N</h3>
-<h3>Register Number/Staff Id: TSML006</h3>
+<h3>Name: NEERAJA MADASAMY </h3>
+<h3>Register Number : 212225240099</h3>
 
 
 <h3>AIM:</h3>
@@ -40,51 +40,66 @@
 <p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+PROGRAM
 
 ```
 import random
 
-class MedicineAgent:
-    def __init__(self):
-        self.location = "Room A"
+class VacuumCleanerAgent:
+    def __init__(self):  # Initialize the agent's state (location and dirt status)
+        self.location = "A"  # Initial location (can be "A" or "B")
+        self.dirt_status = {
+            "A": True,
+            "B": True,
+        }  # Initial dirt status (False means no dirt)
         self.performance = 0
 
-    def act(self, environment):
-        temp = environment[self.location]["temperature"]
+    def move_left(self):  # Move the agent to the left if possible
+        if self.location == "B":
+            self.location = "A"
 
-        if temp > 98.5:
-            print(f"Patient in {self.location} unhealthy ({temp:.1f}°F). Giving medicine.")
-            self.performance += 10
-            environment[self.location]["temperature"] = 98.5
+    def move_right(self):  # Move the agent to the right if possible
+        if self.location == "A":
+            self.location = "B"
+
+    def suck_dirt(self):  # Suck dirt in the current location if there is dirt
+        if self.dirt_status[self.location]:
+            self.dirt_status[self.location] = False
+            print(f"Sucked dirt in location {self.location}")
+
+    def do_nothing(self):  # Do nothing
+        pass
+
+    def perform_action(self, action):  # Perform the specified action
+        if action == "left":
+            self.performance = self.performance - 1
+            self.move_left()
+        elif action == "right":
+            self.performance = self.performance - 1
+            self.move_right()
+        elif action == "suck":
+            self.performance = self.performance + 10
+            self.suck_dirt()
+        elif action == "nothing":
+            self.do_nothing()
         else:
-            print(f"Patient in {self.location} healthy ({temp:.1f}°F).")
+            print("Invalid action")
 
-        self.location = "Room B" if self.location == "Room A" else "Room A"
-        self.performance -= 1
+    def print_status(self):  # Print the current status of the agent
+        print(f"Location: {self.location}, Dirt Status: {self.dirt_status}, ", end="")
+        print(f"Perfomance Measure: {self.performance}")
+# Example usage:
+agent = VacuumCleanerAgent()
+# Move the agent, suck dirt, and do nothing
+agent.perform_action("left")
+agent.print_status()
+agent.perform_action("suck")
+agent.print_status()
+agent.perform_action("right")
+agent.print_status()
+agent.perform_action("suck")
+agent.print_status()
+agent.perform_action("nothing")
+agent.print_status()```
 
-        print(f"Moving to {self.location}, Performance: {self.performance}")
-        print("-" * 30)
-def main():
-    environment = {
-        "Room A": {"temperature": random.uniform(97.0, 102.0)},
-        "Room B": {"temperature": random.uniform(97.0, 102.0)}
-    }
-
-    agent = MedicineAgent()
-
-    print("Starting simulation.")
-    print("-" * 30)
-
-    for step in range(5):
-        print(f"--- Step {step + 1} ---")
-        agent.act(environment)
-
-        random_room = random.choice(["Room A", "Room B"])
-        environment[random_room]["temperature"] = random.uniform(99.0, 103.0)
-
-    print("Simulation finished.")
-
-
-if __name__ == "__main__":
-    main()
 ```
