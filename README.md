@@ -41,7 +41,7 @@
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
 
-PROGRAM
+<h3>PROGRAM</h3>
 
 ```
 import random
@@ -105,6 +105,6 @@ agent.print_status()```
 
 ```
 
-OUTPUT:
+<h3>OUTPUT:</h3>
 <img width="1202" height="270" alt="image" src="https://github.com/user-attachments/assets/1d95fff6-c683-4476-a58f-540e3109532c" />
 
