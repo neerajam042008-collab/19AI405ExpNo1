@@ -40,6 +40,7 @@
 <p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+
 PROGRAM
 
 ```
@@ -103,3 +104,7 @@ agent.perform_action("nothing")
 agent.print_status()```
 
 ```
+
+OUTPUT:
+<img width="1202" height="270" alt="image" src="https://github.com/user-attachments/assets/1d95fff6-c683-4476-a58f-540e3109532c" />
+
